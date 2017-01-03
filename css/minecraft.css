@@ -1,3 +1,26 @@
 body{
-    background-color: blue;
+    margin: 0;
 }
+
+#main{
+    display: inline-block;
+    height: 100vh;
+    width: 89%;
+	background-image: url("../imagesMineCraft/background.png");
+}
+#tools{
+    width: 10%;
+    display: inline-block;
+}
+
+#logo{
+	width: 80%;
+	margin-top: 125px;
+}
+
+.myButton{
+	font-family: arial;
+	background-color:rgb(26, 192, 36);
+	border: 5px solid black;
+}
+
