@@ -2,25 +2,33 @@ body{
     margin: 0;
 }
 
+.container{
+    height: 100vh;
+}
+
 #main{
     display: inline-block;
-    height: 100vh;
-    width: 89%;
-	background-image: url("../imagesMineCraft/background.png");
+    height: 100%;
+    width: 84%;
+	background-image: url("../images/background.png");
 }
 #tools{
-    width: 10%;
+    width: 16%;
     display: inline-block;
+    background-color: grey;
+    height: 100%;
 }
 
 #logo{
 	width: 80%;
-	margin-top: 125px;
+    display: inline-block;
+	/*margin-top: 125px;*/
 }
 
 .myButton{
 	font-family: arial;
 	background-color:rgb(26, 192, 36);
 	border: 5px solid black;
+    display: inline-block;
 }
 
