@@ -14,26 +14,55 @@ body{
 #main{
     display: inline-block;
     height: 100%;
-    width: 84%;
+    /*width: 84%;*/
+    text-align: center;
 	background-image: url("../images/background.png");
 }
 #tools{
-    width: 16%;
-    display: inline-block;
-    background-color: grey;
+/*    width: 16%;
+*/    display: inline-block;
+    background-color:rgb(74, 38, 28);
     height: 100%;
+    text-align: center;
 }
 
 #logo{
 	width: 80%;
     display: inline-block;
-	/*margin-top: 125px;*/
+	margin-top: 125px;
 }
 
 .myButton{
 	font-family: arial;
 	background-color:rgb(26, 192, 36);
 	border: 5px solid black;
-    display: inline-block;
+    display:block;
+    margin:auto;
 }
 
+.tool, #matter{
+    height: 20%;
+    width: 70%;
+    background-color:rgb(19, 163, 28);
+    border:1px solid black;
+    margin: auto;
+    margin-top: 15px;
+    box-shadow: 5px 5px 5px #000;
+    border-radius: 10px;
+}
+#axe{
+    background-image: url("../images/axe.png");
+    background-size: 100% 100%;
+}
+#pickaxe{
+    background-image: url("../images/pickaxe.png");
+    background-size: 100% 100%;
+}
+#shovel{
+    background-image: url("../images/shovel.png");
+    background-size: 100% 100%;
+}
+ #matter{
+    display: none;
+    
+}

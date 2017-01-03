@@ -1,4 +1,5 @@
 var minecraft = {};
+minecraft.gamePlay = false; 
 /*
 Ca c'est un NameSpace. A partir de cette ligne, toute nouvelle variable ou fonction doit commencer par minecraft.nomDeLaChose
 
@@ -23,9 +24,14 @@ minecraft.createButton = function(){
     btn.click(minecraft.newGame);
 }
 
-minecraft.newGame = function(){ // set the game board. 
-    alert('test');
+minecraft.newGame = function(){ // set the game board.
+		    $('#logo').hide();
+		    $('.myButton').hide();
+		    $('#main').css({'background-image':'none', 'background-color':'rgb(73, 190, 203)'});
+		    minecraft.gamePlay = true;
 }
+/*onclick="newGame();location.reload();" ou quelque chose du genre a faire dans le html */
+
 
 minecraft.createButton();
 
@@ -33,14 +39,14 @@ minecraft.createButton();
 
 
 
-// pickaxe() : Doit comparer si il s'agit d'un background pierre, Si oui attrape le background. 
+// pickaxe() : Doit comparer si il s'agit d'un background pierre, Si oui attrape le background. – for mining rocks
 
 
 
-//shovel(); idem sauf qu'il s'agit de la terre.
+//shovel(); idem sauf qu'il s'agit de la terre. -for digging dirt
 
 
-//axe(); idem sauf qu'il s'agit du bois et des buissons. 
+//axe(); idem sauf qu'il s'agit du bois et des buissons. – for cutting trees
 
 
 
