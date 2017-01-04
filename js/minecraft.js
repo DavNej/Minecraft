@@ -130,10 +130,41 @@ minecraft.updateBoard = function(){
     }
 }
 
+minecraft.checkIfPickable = function(line, col) {
+    if(minecraft.matrix[line][col] == "leaves"){
+        if(
+            minecraft.matrix[line-1][col] == "" ||
+            minecraft.matrix[line+1][col] == "" ||
+            minecraft.matrix[line][col-1] == "" ||
+            minecraft.matrix[line][col+1] == ""
+        ){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    if(minecraft.matrix[line][col] == "wood"){
+
+    }
+    if(minecraft.matrix[line][col] == "leaves"){
+
+    }
+    if(minecraft.matrix[line][col] == "leaves"){
+
+    }
+    if (minecraft.matrix[line-1][col] != ""){
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+
 minecraft.caseClicked = function(){ //me donne la valeur de ma case (ma classe)
     var line =$(this).data("line");
     var col =$(this).data("col");
-    return minecraft.matrix[line][col]; 
+    return minecraft.matrix[line][col];
 }
 
 //Fonction of the menu that have to be on pause when the main is landing, and on play when the main is gameboard. : 
