@@ -17,7 +17,7 @@ body{
 
 /********* Game board *********/
 
-.empty{
+.case{ /* correspond à chaque case à l'interieur de la grille */
     width: 30px;
     height: 30px;
     display: inline-block;
@@ -26,8 +26,8 @@ body{
     margin: 0;
 }
 
-.empty:hover{
-    background-color: green;
+.case:hover{
+    background-color: pink;
 }
 
 /********* Landing page *********/
@@ -38,7 +38,7 @@ body{
 }
 
 #world{
-    display: none;
+    display: none; /* pour pas qu'on le voit au début */
     width: 600px;
     height: 600px;
     margin: 2% auto;
@@ -90,6 +90,6 @@ body{
     background-position: center;
 }
  #matter{
-    display: none;
-    
+    display: none;   
 }
+
