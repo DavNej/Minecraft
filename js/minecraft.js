@@ -1,20 +1,5 @@
 var minecraft = {};
 minecraft.gamePlay = false; 
-/*
-Ca c'est un NameSpace. A partir de cette ligne, toute nouvelle variable ou fonction doit commencer par minecraft.nomDeLaChose
-
-______ Declaration d'une nouvelle fonction: ______
-
-minecraft.nomDeLaFonction = function(){
-    console.log('youpi');
-}
-
-______ Declaration d'une nouvelle variable: ______
-
-minecraft.nouvelleVariable = 'NameSpace is easy';
-
-meme plus besoin de lui dire var :)
-*/
 
 minecraft.createButton = function(){
     var btn=$("<button/>");
@@ -34,25 +19,16 @@ minecraft.newGame = function(){ // set the game board.
 }
 
 minecraft.initWorld = function(){
-    minecraft.createMatrix();
     minecraft.initMatrix();
     //minecraft.updateBoard();
 }
 
-minecraft.createMatrix = function(){
-    minecraft.matrix = Array(20);
+minecraft.initMatrix = function(){
+    minecraft.matrix = new Array(20);
     for(var i = 0; i < minecraft.matrix.length; i++){
-        minecraft.matrix[i] = Array(20);
+        minecraft.matrix[i] = new Array(20);
     }
     //intialization
-    for(var i = 0; i < minecraft.matrix.length; i++){
-        for(var j = 0; j < minecraft.matrix.length; j++){
-            minecraft.matrix[i][j] = "";
-        }
-    }
-}
-
-minecraft.initMatrix = function(){
     for(var i = 0; i < minecraft.matrix.length; i++){
         for(var j = 0; j < minecraft.matrix.length; j++){
             var block = $('<div>');
@@ -65,8 +41,6 @@ minecraft.initMatrix = function(){
         }
     }
 }
-
-minecraft.createButton();
 
 //Fonction of the menu that have to be on pause when the main is landing, and on play when the main is gameboard. : 
 
@@ -102,12 +76,7 @@ minecraft.pickStone=function(e){
 minecraft.pickwood=function(e){
 	alert("You can only pick dirt");
 }
-/*minecraft.useTool =function(e){
-	if(e.target.hasClass())
-}
-
-	//avoir un onclick on each cells, check which tool is selected
-
+/*
 //axe(); idem sauf qu'il s'agit du bois et des buissons. – for cutting trees
 
 	/*else if(e.target.id =="pickaxe"){
@@ -117,13 +86,12 @@ minecraft.pickwood=function(e){
 	}
 	else (e.target.id =="shovel"){
 	$("shovel".css)
-	}
-
-	
+	}	
 }*/
 
 // pickaxe() : Doit comparer si il s'agit d'un background pierre, Si oui attrape le background. – for mining rocks
 //shovel(); idem sauf qu'il s'agit de la terre. -for digging dirt
 
-
 //remove class wood et addclass ciel . 
+
+minecraft.createButton();
