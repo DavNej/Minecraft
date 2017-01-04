@@ -17,6 +17,9 @@ minecraft.newGame = function(){ // set the game board.
     minecraft.gamePlay = true;
     minecraft.initWorld();
 }
+
+minecraft.createButton();
+
 // Fonction qui va définir l'univers du jeu
 minecraft.initWorld = function(){
     minecraft.initMatrix();
@@ -25,6 +28,7 @@ minecraft.initWorld = function(){
     minecraft.createStone(15, 16);
     minecraft.createBush(15, 9);
     minecraft.updateBoard();
+    $('.tool').click(minecraft.selectTool);
 }
 
 //Création des lignes et des colonnes.
@@ -132,12 +136,7 @@ minecraft.updateBoard = function(){
 
 minecraft.checkIfPickable = function(line, col) {
     if(minecraft.matrix[line][col] == "leaves"){
-        if(
-            minecraft.matrix[line-1][col] == "" ||
-            minecraft.matrix[line+1][col] == "" ||
-            minecraft.matrix[line][col-1] == "" ||
-            minecraft.matrix[line][col+1] == ""
-        ){
+        if(minecraft.matrix[line-1][col] == "" || minecraft.matrix[line+1][col] == "" || minecraft.matrix[line][col-1] == "" || minecraft.matrix[line][col+1] == ""){
             return true;
         }
         else{
@@ -145,7 +144,9 @@ minecraft.checkIfPickable = function(line, col) {
         }
     }
     if(minecraft.matrix[line][col] == "wood"){
-
+        if(minecraft.matrix[line-1][col] == ""){
+            
+        }
     }
     if(minecraft.matrix[line][col] == "leaves"){
 
@@ -164,56 +165,57 @@ minecraft.checkIfPickable = function(line, col) {
 minecraft.caseClicked = function(){ //me donne la valeur de ma case (ma classe)
     var line =$(this).data("line");
     var col =$(this).data("col");
-    return minecraft.matrix[line][col];
-}
+    $('#matter').removeClass(); //Pour ne pas que les addClass s'accumulent
+    if(minecraft.selectedTool=="axe"){
+        if(minecraft.matrix[line][col] =="wood" || minecraft.matrix[line][col] =="leaves" ||minecraft.matrix[line][col] =="bush"){
+            if (minecraft.matrix[line][col] =="wood"){
+                $('#matter').css({"display" : "block"});
+                $('#matter').addClass("wood");
+            }
+             if (minecraft.matrix[line][col] =="leaves"){
+                $('#matter').css({"display" : "block"});
+                $('#matter').addClass("leaves");
+            }
+             if (minecraft.matrix[line][col] =="bush"){
+                $('#matter').css({"display" : "block"});
+                $('#matter').addClass("bush");
+            }
+        minecraft.matrix[line][col] = "";
+        }
+    }
+    else if(minecraft.selectedTool=="pickaxe"){
+        if(minecraft.matrix[line][col] =="stone"){
+            $('#matter').css({"display" : "block"});
+            $('#matter').addClass("stone");
+            minecraft.matrix[line][col] = "";
+        }
+    }
 
+    else if(minecraft.selectedTool=="shovel"){
+        if(minecraft.matrix[line][col] =="dirt" || minecraft.matrix[line][col] =="floor" ){
+            if(minecraft.matrix[line][col] =="dirt"){
+                $('#matter').css({"display" : "block"});
+                $('#matter').addClass("dirt");
+
+            }
+            if(minecraft.matrix[line][col] =="floor"){
+                $('#matter').css({"display" : "block"});
+                $('#matter').addClass("floor");
+
+            }
+            minecraft.matrix[line][col] = "";
+        }
+    }
+
+    /*else if (minecraft.selectedTool=="matter"){
+    }*/
+
+    minecraft.updateBoard(); // We are calling updateBoard who reads the matrix and update the board.
+}
 //Fonction of the menu that have to be on pause when the main is landing, and on play when the main is gameboard. : 
 minecraft.selectTool = function(){
-    console.log($(this).attr('id'));
-    if ($(this).attr('id')=="axe"){
-        minecraft.selectedTool ==="axe";
-    }
-    else if($(this).attr('id') == "pickaxe"){
-        minecraft.pickStone();
-    }
-    else if ($(this).attr('id') == "shovel"){
-        minecraft.pickDirt();
-    }
-    else if($(this).attr('id') == "matter"){
-        minecraft.pickMatter();
+    if ($(this).hasClass("tool")) {
+        minecraft.selectedTool=$(this).attr('id');    
     }
 }
-$('.tool').click(minecraft.selectTool);
 
-//Function selectTool allow us to select one of our tool. 
-
-/********************************************************************************************************/
-
-/*
-//Function pick me permet de changer les class . 
-minecraft.pickWood=function(){
-	alert("You can only pick wood");
-    $('#matter').css({"display" : "block"});
-    if(minecraft.caseClicked === "wood"){
-    
-    }
-	}
-
-minecraft.pickStone=function(){
-	alert("You can only pick stone");
-    $('#matter').css({"display" : "block"});
-}
-
-minecraft.pickDirt=function(){
-    alert("You can only pick dirt");
-    $('#matter').css({"display" : "block"});
-}
-minecraft.pickMatter=function(){
-    alert("You can have only the matter you select");
-}
-
-// pickaxe() : Doit comparer si il s'agit d'un background pierre, Si oui attrape le background. – for mining rocks
-//shovel(); idem sauf qu'il s'agit de la terre. -for digging dirt
-//remove class wood et addclass ciel . 
-*/
-minecraft.createButton();
