@@ -20,6 +20,7 @@ minecraft.newGame = function(){ // set the game board.
 
 minecraft.initWorld = function(){
     minecraft.initMatrix();
+    minecraft.initBoard();
     //minecraft.updateBoard();
 }
 
@@ -28,40 +29,50 @@ minecraft.initMatrix = function(){
     for(var i = 0; i < minecraft.matrix.length; i++){
         minecraft.matrix[i] = new Array(20);
     }
-    //intialization
+    for(var i = 0; i < minecraft.matrix.length; i++){
+        for(var j = 0; j < minecraft.matrix.length; j++){
+            minecraft.matrix[i][j] = "";
+        }
+    }
+}
+
+minecraft.initBoard = function(){
     for(var i = 0; i < minecraft.matrix.length; i++){
         for(var j = 0; j < minecraft.matrix.length; j++){
             var block = $('<div>');
             block
-                .addClass('empty')
+                .addClass("case")
+                .addClass(minecraft.matrix[i][j])
                 .data("i", i)
-                .data("j", j);
-            
+                .data("j", j)
+                .on("click", minecraft.caseClicked);
             $('#world').append(block);
         }
     }
 }
 
+
 //Fonction of the menu that have to be on pause when the main is landing, and on play when the main is gameboard. : 
 
 // pickaxe() : Doit comparer si il s'agit d'un background pierre, Si oui attrape le background. – for mining rocks
+
 
 $('.tool').click(function(e){minecraft.selectTool(e);});
 
 //Function selectTool allow us to select one of our tool. 
 minecraft.selectTool = function(e){
-console.log(e.target.id);
-if (e.target.id == "axe"){
-	minecraft.pickWood();
-	//minecraft.currentTool = "axe";
-}
-else if(e.target.id =="pickaxe"){
-	minecraft.pickStone();
-//minecraft.currentTool = "pickaxe";
-}
-else if (e.target.id =="shovel"){
-minecraft.pickDirt();
-}
+    console.log(e.target.id);
+    if (e.target.id == "axe"){
+	    minecraft.pickWood();
+	    //minecraft.currentTool = "axe";
+    }
+    else if(e.target.id =="pickaxe"){
+	    minecraft.pickStone();
+        //minecraft.currentTool = "pickaxe";
+    }
+    else if (e.target.id =="shovel"){
+        minecraft.pickDirt();
+    }
 }
 
 minecraft.pickWood=function(e){
