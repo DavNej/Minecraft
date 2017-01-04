@@ -13,6 +13,7 @@ body{
     height: 100%;
     text-align: center;
 	background-image: url("../images/background.png");
+    background-size: cover;
 }
 
 /********* Game board *********/
@@ -23,7 +24,7 @@ body{
     display: inline-block;
     line-height: 0;
     margin: 0;
-    /*background-size: contain;*/
+    background-size: contain;
 }
 
 .block:hover{
@@ -62,7 +63,8 @@ body{
     width: 600px;
     height: 600px;
     margin: 2% auto;
-    background-color: rgb(73, 190, 203);
+    background-image: url("../images/sky.jpg");
+    background-size: auto 100%;
 }
 
 .myButton{

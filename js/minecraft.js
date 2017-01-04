@@ -52,8 +52,7 @@ minecraft.initBoard = function(){
 }
 
 minecraft.updateBoard = function(){
-    console.log(minecraft.block);
-    minecraft.block
+    minecraft.element = $('.block')
         .removeClass("wood")
         .removeClass("leaves")
         .removeClass("stone")
@@ -64,17 +63,7 @@ minecraft.updateBoard = function(){
 
     for(var i = 0; i<minecraft.matrix.length; i++){
         for(var j = 0; j<minecraft.matrix[i].length; j++){
-            if(minecraft.matrix[i][j] != ""){
-                
-                //console.log(minecraft.matrix[i][j]);
-                //minecraft.block.eq(i*20 + j).addClass(minecraft.matrix[i][j]);
-                //minecraft.block.eq(i*20 + j).addClass('test');
-
-                minecraft.block.eq(i*20 + j).addClass('choup');
-                minecraft.block.eq(i*20 + j).addClass(minecraft.matrix[i][j]);
-
-                console.log(minecraft.block.eq(i*20 + j));
-            }
+                minecraft.element.eq(i*20 + j).addClass(minecraft.matrix[i][j]);
         }
     }
 }
@@ -84,7 +73,7 @@ minecraft.caseClicked = function(){ //me donne la valeur de ma case (ma classe)
     var col =$(this).data("col");
     minecraft.matrix[line][col] = "wood";
     minecraft.updateBoard();
-    console.log(minecraft.matrix[line][col]); 
+//    console.log(minecraft.matrix[line][col]); 
 }
 
 //Fonction of the menu that have to be on pause when the main is landing, and on play when the main is gameboard. : 
