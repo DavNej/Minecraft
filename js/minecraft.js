@@ -29,6 +29,7 @@ minecraft.initWorld = function(){
     minecraft.createBush(15, 9);
     minecraft.updateBoard();
     $('.tool').click(minecraft.selectTool);
+    $('#matter').click(minecraft.selectTool);
 }
 
 //Création des lignes et des colonnes.
@@ -165,7 +166,8 @@ minecraft.checkIfPickable = function(line, col) {
 minecraft.caseClicked = function(){ //me donne la valeur de ma case (ma classe)
     var line =$(this).data("line");
     var col =$(this).data("col");
-    $('#matter').removeClass(); //Pour ne pas que les addClass s'accumulent
+        $('#matter').removeClass(); //Pour ne pas que les addClass s'accumulent
+
     if(minecraft.selectedTool=="axe"){
         if(minecraft.matrix[line][col] =="wood" || minecraft.matrix[line][col] =="leaves" ||minecraft.matrix[line][col] =="bush"){
             if (minecraft.matrix[line][col] =="wood"){
@@ -203,8 +205,15 @@ minecraft.caseClicked = function(){ //me donne la valeur de ma case (ma classe)
                 $('#matter').addClass("floor");
 
             }
+
             minecraft.matrix[line][col] = "";
         }
+
+    }
+    else if (minecraft.selectedTool=="matter"){
+        console.log("tu le fais toujours ?? connard")
+        //console.log($("#matter").attr('class'));
+        minecraft.matrix[line][col] = $("#matter").attr('class');
     }
 
     /*else if (minecraft.selectedTool=="matter"){
@@ -216,6 +225,9 @@ minecraft.caseClicked = function(){ //me donne la valeur de ma case (ma classe)
 minecraft.selectTool = function(){
     if ($(this).hasClass("tool")) {
         minecraft.selectedTool=$(this).attr('id');    
+    }
+    if($(this).attr("id")==('matter')){
+        minecraft.selectedTool = 'matter';
     }
 }
 
