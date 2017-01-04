@@ -49,6 +49,16 @@ minecraft.initBoard = function(){
             $('#world').append(minecraft.block);
         }
     }
+    for(var i = 16; i < minecraft.matrix.length; i++){
+        for(var j = 0; j < minecraft.matrix[i].length; j++){
+            if(i === 16){
+                minecraft.matrix[i][j] = "floor";
+            }
+            else{
+                minecraft.matrix[i][j] = "dirt";
+            }
+        }
+    }
 }
 
 minecraft.updateBoard = function(){
@@ -102,7 +112,7 @@ $('.tool').click(minecraft.selectTool);
 
 
 //Function pick me permet de changer les class . 
-minecraft.pickWood=function(e){
+minecraft.pickWood=function(){
 	alert("You can only pick wood");
     $('#matter').css({"display" : "block"});
     if(minecraft.caseClicked === "wood"){
@@ -110,16 +120,16 @@ minecraft.pickWood=function(e){
     }
 	}
 
-minecraft.pickStone=function(e){
+minecraft.pickStone=function(){
 	alert("You can only pick stone");
     $('#matter').css({"display" : "block"});
 }
 
-minecraft.pickDirt=function(e){
+minecraft.pickDirt=function(){
     alert("You can only pick dirt");
     $('#matter').css({"display" : "block"});
 }
-minecraft.pickMatter=function(e){
+minecraft.pickMatter=function(){
     alert("You can have only the matter you select");
 }
 
