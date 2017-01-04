@@ -17,37 +17,38 @@ body{
 
 /********* Game board *********/
 
-.case{ /* correspond à chaque case à l'interieur de la grille */
+.block{ /* correspond à chaque case à l'interieur de la grille */
     width: 30px;
     height: 30px;
     display: inline-block;
     line-height: 0;
     margin: 0;
+    /*background-size: contain;*/
 }
 
-.case:hover{
+.block:hover{
     background-color: pink;
 }
 
 /********* Matter Classes *********/
 
 .wood{
-    background-image: url('images/wood.png');
+    background-image: url('../images/wood.png');
 }
 .leaves{
-    background-image: url('images/leaves.png');
+    background-image: url('../images/leaves.png');
 }
 .stone{
-    background-image: url('images/stone.png');
+    background-image: url('../images/stone.png');
 }
 .floor{
-    background-image: url('images/floor.png');
+    background-image: url('../images/floor.png');
 }
 .dirt{
-    background-image: url('images/dirt.png');
+    background-image: url('../images/dirt.png');
 }
 .bush{
-    background-image: url('images/bush.png');
+    background-image: url('../images/bush.png');
 }
 /********* Landing page *********/
 #logo{

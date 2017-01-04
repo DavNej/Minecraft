@@ -21,7 +21,7 @@ minecraft.newGame = function(){ // set the game board.
 minecraft.initWorld = function(){
     minecraft.initMatrix();
     minecraft.initBoard();
-    //minecraft.updateBoard();
+    minecraft.updateBoard();
 }
 
 //Création des lignes et des colonnes. 
@@ -31,7 +31,7 @@ minecraft.initMatrix = function(){
         minecraft.matrix[i] = new Array(20);
     }
     for(var i = 0; i < minecraft.matrix.length; i++){
-        for(var j = 0; j < minecraft.matrix.length; j++){
+        for(var j = 0; j < minecraft.matrix[i].length; j++){
             minecraft.matrix[i][j] = "";
         }
     }
@@ -39,46 +39,77 @@ minecraft.initMatrix = function(){
 
 minecraft.initBoard = function(){
     for(var i = 0; i < minecraft.matrix.length; i++){
-        for(var j = 0; j < minecraft.matrix.length; j++){
-            minecraft.matrix[i][j] = i + " & " + j;
-            var block = $('<div>');
-            block
-                .addClass("case")
-                .addClass(minecraft.matrix[i][j])
-                .data("line", i)
-                .data("col", j)
-                .on("click", minecraft.caseClicked);
-
-            $('#world').append(block);
+        for(var j = 0; j < minecraft.matrix[i].length; j++){
+            minecraft.block = $('<div>');
+            minecraft.block
+                    .addClass("block")
+                    .data("line", i)
+                    .data("col", j)
+                    .on("click", minecraft.caseClicked);
+            $('#world').append(minecraft.block);
         }
     }
 }
+
+minecraft.updateBoard = function(){
+    console.log(minecraft.block);
+    minecraft.block
+        .removeClass("wood")
+        .removeClass("leaves")
+        .removeClass("stone")
+        .removeClass("floor")
+        .removeClass("dirt")
+        .removeClass("bush");
+
+
+    for(var i = 0; i<minecraft.matrix.length; i++){
+        for(var j = 0; j<minecraft.matrix[i].length; j++){
+            if(minecraft.matrix[i][j] != ""){
+                
+                //console.log(minecraft.matrix[i][j]);
+                //minecraft.block.eq(i*20 + j).addClass(minecraft.matrix[i][j]);
+                //minecraft.block.eq(i*20 + j).addClass('test');
+
+                minecraft.block.eq(i*20 + j).addClass('choup');
+                minecraft.block.eq(i*20 + j).addClass(minecraft.matrix[i][j]);
+
+                console.log(minecraft.block.eq(i*20 + j));
+            }
+        }
+    }
+}
+
 minecraft.caseClicked = function(){ //me donne la valeur de ma case (ma classe)
     var line =$(this).data("line");
     var col =$(this).data("col");
-return(minecraft.matrix[line][col]); 
+    minecraft.matrix[line][col] = "wood";
+    minecraft.updateBoard();
+    console.log(minecraft.matrix[line][col]); 
 }
 
 //Fonction of the menu that have to be on pause when the main is landing, and on play when the main is gameboard. : 
 
-$('.tool').click(function(e){minecraft.selectTool(e);});
+$('.tool').click(function(){minecraft.selectTool();});
 
 //Function selectTool allow us to select one of our tool. 
 
-minecraft.selectTool = function(e){
-    console.log(e.target.id);
-    if (e.target.id == "axe"){
+/********************************************************************************************************/
+
+
+minecraft.selectTool = function(){
+    console.log($(this).attr('id'));
+    if ($(this).attr("id") == "axe"){
 	    minecraft.pickWood();
 	    //minecraft.currentTool = "axe";
     }
-    else if(e.target.id =="pickaxe"){
+    else if($(this).attr("id") == "pickaxe"){
 	    minecraft.pickStone();
         //minecraft.currentTool = "pickaxe";
     }
-    else if (e.target.id =="shovel"){
+    else if ($(this).attr("id") == "shovel"){
         minecraft.pickDirt();
     }
-    else if(e.target.id =="matter"){
+    else if($(this).attr("id") == "matter"){
         minecraft.pickMatter();
     }
 }
