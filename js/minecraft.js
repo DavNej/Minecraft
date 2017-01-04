@@ -73,7 +73,7 @@ minecraft.updateBoard = function(){
                 minecraft.block.eq(i*20 + j).addClass('choup');
                 minecraft.block.eq(i*20 + j).addClass(minecraft.matrix[i][j]);
 
-                console.log(minecraft.block.eq(i*20 + j));
+              //  console.log(minecraft.block.eq(i*20 + j));
             }
         }
     }
@@ -88,31 +88,29 @@ minecraft.caseClicked = function(){ //me donne la valeur de ma case (ma classe)
 }
 
 //Fonction of the menu that have to be on pause when the main is landing, and on play when the main is gameboard. : 
-
-$('.tool').click(function(){minecraft.selectTool();});
+minecraft.selectTool = function(){
+    console.log($(this).attr('id'));
+    if ($(this).attr('id')=="axe"){
+        minecraft.pickWood();
+    }
+    else if($(this).attr('id') == "pickaxe"){
+        minecraft.pickStone();
+    }
+    else if ($(this).attr('id') == "shovel"){
+        minecraft.pickDirt();
+    }
+    else if($(this).attr('id') == "matter"){
+        minecraft.pickMatter();
+    }
+}
+$('.tool').click(minecraft.selectTool);
 
 //Function selectTool allow us to select one of our tool. 
 
 /********************************************************************************************************/
 
 
-minecraft.selectTool = function(){
-    console.log($(this).attr('id'));
-    if ($(this).attr("id") == "axe"){
-	    minecraft.pickWood();
-	    //minecraft.currentTool = "axe";
-    }
-    else if($(this).attr("id") == "pickaxe"){
-	    minecraft.pickStone();
-        //minecraft.currentTool = "pickaxe";
-    }
-    else if ($(this).attr("id") == "shovel"){
-        minecraft.pickDirt();
-    }
-    else if($(this).attr("id") == "matter"){
-        minecraft.pickMatter();
-    }
-}
+
 
 //Function pick me permet de changer les class . 
 minecraft.pickWood=function(e){
