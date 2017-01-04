@@ -133,16 +133,14 @@ minecraft.updateBoard = function(){
 minecraft.caseClicked = function(){ //me donne la valeur de ma case (ma classe)
     var line =$(this).data("line");
     var col =$(this).data("col");
-    minecraft.matrix[line][col] = "wood";
-    minecraft.updateBoard();
-//    console.log(minecraft.matrix[line][col]); 
+    return minecraft.matrix[line][col]; 
 }
 
 //Fonction of the menu that have to be on pause when the main is landing, and on play when the main is gameboard. : 
 minecraft.selectTool = function(){
     console.log($(this).attr('id'));
     if ($(this).attr('id')=="axe"){
-        minecraft.pickWood();
+        minecraft.selectedTool ==="axe";
     }
     else if($(this).attr('id') == "pickaxe"){
         minecraft.pickStone();
@@ -160,15 +158,13 @@ $('.tool').click(minecraft.selectTool);
 
 /********************************************************************************************************/
 
-
-
-
+/*
 //Function pick me permet de changer les class . 
 minecraft.pickWood=function(){
 	alert("You can only pick wood");
     $('#matter').css({"display" : "block"});
     if(minecraft.caseClicked === "wood"){
-        minecraft.matrix
+    
     }
 	}
 
@@ -188,5 +184,5 @@ minecraft.pickMatter=function(){
 // pickaxe() : Doit comparer si il s'agit d'un background pierre, Si oui attrape le background. – for mining rocks
 //shovel(); idem sauf qu'il s'agit de la terre. -for digging dirt
 //remove class wood et addclass ciel . 
-
+*/
 minecraft.createButton();
