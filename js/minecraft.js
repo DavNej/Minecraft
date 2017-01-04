@@ -17,14 +17,17 @@ minecraft.newGame = function(){ // set the game board.
     minecraft.gamePlay = true;
     minecraft.initWorld();
 }
-// Fonction qui va définir l'univers du jeu . 
+// Fonction qui va définir l'univers du jeu
 minecraft.initWorld = function(){
     minecraft.initMatrix();
     minecraft.initBoard();
+    minecraft.createTree(16, 3);
+    minecraft.createStone(15, 16);
+    minecraft.createBush(15, 9);
     minecraft.updateBoard();
 }
 
-//Création des lignes et des colonnes. 
+//Création des lignes et des colonnes.
 minecraft.initMatrix = function(){
     minecraft.matrix = new Array(20);
     for(var i = 0; i < minecraft.matrix.length; i++){
@@ -36,7 +39,6 @@ minecraft.initMatrix = function(){
         }
     }
 }
-
 minecraft.initBoard = function(){
     for(var i = 0; i < minecraft.matrix.length; i++){
         for(var j = 0; j < minecraft.matrix[i].length; j++){
@@ -60,6 +62,57 @@ minecraft.initBoard = function(){
         }
     }
 }
+minecraft.createTree = function(line, col){
+    minecraft.matrix[line][col] = "wood";
+    minecraft.matrix[line-1][col] = "wood";
+    minecraft.matrix[line-2][col] = "wood";
+    minecraft.matrix[line-3][col] = "wood";
+    minecraft.matrix[line-4][col] = "wood";
+    minecraft.matrix[line-5][col] = "wood";
+    
+    minecraft.matrix[line-6][col] = "leaves";
+    minecraft.matrix[line-7][col] = "leaves";
+    minecraft.matrix[line-8][col] = "leaves";
+    minecraft.matrix[line-9][col] = "leaves";
+    
+    minecraft.matrix[line-6][col-1] = "leaves";
+    minecraft.matrix[line-7][col-1] = "leaves";
+    minecraft.matrix[line-8][col-1] = "leaves";
+    minecraft.matrix[line-9][col-1] = "leaves";
+
+    minecraft.matrix[line-6][col-2] = "leaves";
+    minecraft.matrix[line-7][col-2] = "leaves";
+    minecraft.matrix[line-8][col-2] = "leaves";
+    minecraft.matrix[line-9][col-2] = "leaves";
+
+    minecraft.matrix[line-6][col+1] = "leaves";
+    minecraft.matrix[line-7][col+1] = "leaves";
+    minecraft.matrix[line-8][col+1] = "leaves";
+    minecraft.matrix[line-9][col+1] = "leaves";
+
+    minecraft.matrix[line-6][col+2] = "leaves";
+    minecraft.matrix[line-7][col+2] = "leaves";
+    minecraft.matrix[line-8][col+2] = "leaves";
+    minecraft.matrix[line-9][col+2] = "leaves";
+
+}
+minecraft.createStone = function(line, col){
+    minecraft.matrix[line][col-1] = "stone";
+    minecraft.matrix[line][col] = "stone";
+    minecraft.matrix[line][col+1] = "stone";
+    minecraft.matrix[line-1][col-1] = "stone";
+    minecraft.matrix[line-1][col] = "stone";
+    minecraft.matrix[line-1][col+1] = "stone";
+}
+minecraft.createBush = function(line, col){
+    minecraft.matrix[line][col-1] = "bush";
+    minecraft.matrix[line][col] = "bush";
+    minecraft.matrix[line][col+1] = "bush";
+    minecraft.matrix[line-1][col-1] = "bush";
+    minecraft.matrix[line-1][col] = "bush";
+    minecraft.matrix[line-1][col+1] = "bush";
+}
+
 
 minecraft.updateBoard = function(){
     minecraft.element = $('.block')
@@ -69,7 +122,6 @@ minecraft.updateBoard = function(){
         .removeClass("floor")
         .removeClass("dirt")
         .removeClass("bush");
-
 
     for(var i = 0; i<minecraft.matrix.length; i++){
         for(var j = 0; j<minecraft.matrix[i].length; j++){
