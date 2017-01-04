@@ -143,22 +143,13 @@ minecraft.checkIfPickable = function(line, col) {
             return false;
         }
     }
-    if(minecraft.matrix[line][col] == "wood"){
+    if(minecraft.matrix[line][col] == "wood" || minecraft.matrix[line][col] == "dirt" || minecraft.matrix[line][col] == "floor" || minecraft.matrix[line][col] == "bush"){
         if(minecraft.matrix[line-1][col] == ""){
-            
+            return true;
         }
-    }
-    if(minecraft.matrix[line][col] == "leaves"){
-
-    }
-    if(minecraft.matrix[line][col] == "leaves"){
-
-    }
-    if (minecraft.matrix[line-1][col] != ""){
-        return false;
-    }
-    else{
-        return true;
+        else{
+            return false;
+        }
     }
 }
 
