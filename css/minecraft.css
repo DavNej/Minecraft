@@ -1,13 +1,11 @@
 body{
     margin: 0;
 }
-
 .container{
     height: 100vh;
     width: 100%;
     padding: 0;
 }
-
 #main{
     display: inline-block;
     height: 100%;
@@ -17,7 +15,6 @@ body{
 }
 
 /********* Game board *********/
-
 .block{ /* correspond à chaque case à l'interieur de la grille */
     width: 30px;
     height: 30px;
@@ -26,13 +23,11 @@ body{
     margin: 0;
     background-size: contain;
 }
-
 .block:hover{
     background-color: pink;
 }
 
 /********* Matter Classes *********/
-
 .wood{
     background-image: url('../images/wood.png');
 }
@@ -51,13 +46,13 @@ body{
 .bush{
     background-image: url('../images/bush.png');
 }
+
 /********* Landing page *********/
 #logo{
 	width: 80%;
     display: inline-block;
 	margin-top: 125px;
 }
-
 #world{
     display: none; /* pour pas qu'on le voit au début */
     width: 600px;
@@ -75,9 +70,8 @@ body{
     margin:auto;
 }
 
-
 /********* Barre d'outils *********/
-#tools{
+#tool-bar{
     display: inline-block;
     height: 100%;
     /*width: 300px;*/
@@ -85,7 +79,7 @@ body{
     background-image: url("../images/greytwo.jpg");
     background-size: cover;
 }
-.tool, #matter{
+.tool, .matter{
     height: 70px;
     width: 70px;
     /*border:1px solid black;*/
@@ -93,17 +87,19 @@ body{
     margin-top: 8px;
     box-shadow: 5px 5px 5px #000;
     border-radius: 10px;
+    overflow: hidden;
     background-color: rgb(201, 206, 208);
 }
-.tool p{
+.matter p{
     color: white;
     background-color: black;
-    border-radius: 0px 0px 10px 10px;
+    /*border-radius: 0px 0px 10px 10px;*/
     margin-top: 100%;
     transform: translateY(-100%);
 }
+
 /********* Tools *********/
-#secateur,#pickaxe,#shovel,#axe{
+#secateur, #pickaxe, #shovel, #axe{
     display:inline-block;
     margin-right: 11px;
 }
@@ -132,6 +128,7 @@ body{
     background-repeat: no-repeat;
     background-position: center;
 }
+
 /********* Matters *********/
 #stone,#leaves,#wood,#bush,#dirt,#floor{
     background-size: 100% 100%;

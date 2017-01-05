@@ -29,9 +29,9 @@ minecraft.initWorld = function(){
     minecraft.createBush(15, 9);
     minecraft.updateBoard();
     
-    $('.tool, #matter').click(minecraft.selectTool);
-    $('.tool, #matter').mousedown(function(){$(this).css("box-shadow", "5px 5px 5px #000 inset");});
-    $('.tool, #matter').mouseup(function(){$(this).css("box-shadow", "5px 5px 5px #000");});
+    $('.tool, .matter').click(minecraft.selectTool);
+    $('.tool, .matter').mousedown(function(){$(this).css("box-shadow", "5px 5px 5px .000 inset");});
+    $('.tool, .matter').mouseup(function(){$(this).css("box-shadow", "5px 5px 5px #000");});
 }
 
 //Création des lignes et des colonnes.
@@ -165,15 +165,9 @@ minecraft.inventory = {
     floor: 0
 }
 
-minecraft.updateInventory = function(){
-    
-}
-
 minecraft.updateMatter = function(pickedMatter){
     minecraft.inventory[pickedMatter]++;
-    $('#matter').removeClass();
-    $('#matter').css({"display" : "block"});
-    $('#matter').addClass(pickedMatter);
+    $('#' + pickedMatter +" p").text(minecraft.inventory[pickedMatter]);
 }
 
 
@@ -184,7 +178,7 @@ minecraft.caseClicked = function(){ //me donne la valeur de ma case (ma classe)
 
     if(minecraft.checkIfPickable(line, col)){
         if(minecraft.selectedTool=="axe"){
-            if(minecraft.matrix[line][col] =="wood" /*|| minecraft.matrix[line][col] =="leaves" || minecraft.matrix[line][col] =="bush"*/){
+            if(minecraft.matrix[line][col] =="wood"){
                 minecraft.updateMatter(minecraft.matrix[line][col]);
                 minecraft.matrix[line][col] = "";
             }
@@ -208,11 +202,28 @@ minecraft.caseClicked = function(){ //me donne la valeur de ma case (ma classe)
             }
         }
     }
-    else if (minecraft.selectedTool=="matter"){
+
+/*
+    stone
+    leaves
+    wood
+    bush
+    dirt
+    floor
+*/
+
+
+
+
+
+    else if (minecraft.selectedTool=="stone" &&  minecraft.inventory["stone"] > 0){
         if(minecraft.matrix[line][col] == ""){
-            minecraft.matrix[line][col] = $("#matter").attr('class');
+            minecraft.matrix[line][col] = minecraft.selectedTool;
+            minecraft.inventory[minecraft.selectedTool]--;
         }
     }
+
+
     minecraft.updateBoard(); // We are calling updateBoard who reads the matrix and update the board.
 }
 
@@ -221,7 +232,7 @@ minecraft.selectTool = function(){
     if ($(this).hasClass("tool")) {
         minecraft.selectedTool=$(this).attr('id');
     }
-    if($(this).attr("id")==('matter')){
-        minecraft.selectedTool = 'matter';
+    if ($(this).hasClass("matter")) {
+        minecraft.selectedTool=$(this).attr('id');
     }
 }
