@@ -77,26 +77,32 @@ body{
 
 
 /********* Barre d'outils *********/
-
 #tools{
     display: inline-block;
     height: 100%;
+    /*width: 300px;*/
     text-align: center;
     background-image: url("../images/greytwo.jpg");
     background-size: cover;
 }
-
 .tool, #matter{
     height: 70px;
     width: 70px;
-    border:1px solid black;
+    /*border:1px solid black;*/
     margin: auto;
     margin-top: 8px;
     box-shadow: 5px 5px 5px #000;
     border-radius: 10px;
     background-color: rgb(201, 206, 208);
-    /*margin-left: 12px;*/
 }
+.tool p{
+    color: white;
+    background-color: black;
+    border-radius: 0px 0px 10px 10px;
+    margin-top: 100%;
+    transform: translateY(-100%);
+}
+/********* Tools *********/
 #secateur{
     background-image: url("../images/secateur.png");
     background-size: 80% 80%;
@@ -109,7 +115,6 @@ body{
     background-size: 80% 80%;
     background-repeat: no-repeat;
     background-position: center;
-
 }
 #pickaxe{
     background-image: url("../images/pickaxe.png");
@@ -124,10 +129,7 @@ body{
     background-position: center;
     margin-bottom: 30px;
 }
- #matter{
-    display: none;
-}
-
+/********* Matters *********/
 #stone,#leaves,#wood,#bush,#dirt,#floor{
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -135,7 +137,6 @@ body{
     display:inline-block;
     margin-right: 11px;
 }
-
 #stone{
     background-image: url("../images/stone.png");
 }
