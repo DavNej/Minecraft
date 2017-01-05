@@ -28,8 +28,13 @@ minecraft.initWorld = function(){
     minecraft.createStone(15, 16);
     minecraft.createBush(15, 9);
     minecraft.updateBoard();
+    
     $('.tool').click(minecraft.selectTool);
+    $('.tool').mousedown(function(){$(this).css("box-shadow", "none");});
+    $('.tool').mouseup(function(){$(this).css("box-shadow", "5px 5px 5px #000");});
     $('#matter').click(minecraft.selectTool);
+    $('#matter').mousedown(function(){$(this).css("box-shadow", "none");});
+    $('#matter').mouseup(function(){$(this).css("box-shadow", "5px 5px 5px #000");});
 }
 
 //Création des lignes et des colonnes.
@@ -118,7 +123,6 @@ minecraft.createBush = function(line, col){
     minecraft.matrix[line-1][col+1] = "bush";
 }
 
-
 minecraft.updateBoard = function(){
     minecraft.element = $('.block')
         .removeClass("wood")
@@ -144,7 +148,7 @@ minecraft.checkIfPickable = function(line, col) {
             return false;
         }
     }
-    if(minecraft.matrix[line][col] == "wood" || minecraft.matrix[line][col] == "dirt" || minecraft.matrix[line][col] == "floor" || minecraft.matrix[line][col] == "bush"){
+    if(minecraft.matrix[line][col] == "wood" || minecraft.matrix[line][col] == "dirt" || minecraft.matrix[line][col] == "floor" || minecraft.matrix[line][col] == "bush" || minecraft.matrix[line][col] == "stone"){
         if(minecraft.matrix[line-1][col] == ""){
             return true;
         }
@@ -154,71 +158,48 @@ minecraft.checkIfPickable = function(line, col) {
     }
 }
 
+minecraft.updateMatter = function(pickedMatter){
+    $('#matter').removeClass();
+    $('#matter').css({"display" : "block"});
+    $('#matter').addClass(pickedMatter);
+}
+
 minecraft.caseClicked = function(){ //me donne la valeur de ma case (ma classe)
     var line =$(this).data("line");
     var col =$(this).data("col");
-        $('#matter').removeClass(); //Pour ne pas que les addClass s'accumulent
 
-    if(minecraft.selectedTool=="axe"){
-        if(minecraft.matrix[line][col] =="wood" || minecraft.matrix[line][col] =="leaves" ||minecraft.matrix[line][col] =="bush"){
-            if (minecraft.matrix[line][col] =="wood"){
-                $('#matter').css({"display" : "block"});
-                $('#matter').addClass("wood");
+    if(minecraft.checkIfPickable(line, col)){
+        if(minecraft.selectedTool=="axe"){
+            if(minecraft.matrix[line][col] =="wood" || minecraft.matrix[line][col] =="leaves" || minecraft.matrix[line][col] =="bush"){
+                minecraft.updateMatter(minecraft.matrix[line][col]);
+                minecraft.matrix[line][col] = "";
             }
-             if (minecraft.matrix[line][col] =="leaves"){
-                $('#matter').css({"display" : "block"});
-                $('#matter').addClass("leaves");
-            }
-             if (minecraft.matrix[line][col] =="bush"){
-                $('#matter').css({"display" : "block"});
-                $('#matter').addClass("bush");
-            }
-        minecraft.matrix[line][col] = "";
         }
-    }
-    else if(minecraft.selectedTool=="pickaxe"){
-        if(minecraft.matrix[line][col] =="stone"){
-            $('#matter').css({"display" : "block"});
-            $('#matter').addClass("stone");
-            minecraft.matrix[line][col] = "";
-        }
-    }
-
-    else if(minecraft.selectedTool=="shovel"){
-        if(minecraft.matrix[line][col] =="dirt" || minecraft.matrix[line][col] =="floor" ){
-            if(minecraft.matrix[line][col] =="dirt"){
-                $('#matter').css({"display" : "block"});
-                $('#matter').addClass("dirt");
-
+        else if(minecraft.selectedTool=="pickaxe"){
+            if(minecraft.matrix[line][col] =="stone"){
+                minecraft.updateMatter(minecraft.matrix[line][col]);
+                minecraft.matrix[line][col] = "";
             }
-            if(minecraft.matrix[line][col] =="floor"){
-                $('#matter').css({"display" : "block"});
-                $('#matter').addClass("floor");
-
-            }
-
-            minecraft.matrix[line][col] = "";
         }
-
+        else if(minecraft.selectedTool=="shovel"){
+            if(minecraft.matrix[line][col] =="dirt" || minecraft.matrix[line][col] =="floor" ){
+                minecraft.updateMatter(minecraft.matrix[line][col]);
+                minecraft.matrix[line][col] = "";
+            }
+        }
     }
     else if (minecraft.selectedTool=="matter"){
-        console.log("tu le fais toujours ?? connard")
-        //console.log($("#matter").attr('class'));
         minecraft.matrix[line][col] = $("#matter").attr('class');
     }
-
-    /*else if (minecraft.selectedTool=="matter"){
-    }*/
-
     minecraft.updateBoard(); // We are calling updateBoard who reads the matrix and update the board.
 }
+
 //Fonction of the menu that have to be on pause when the main is landing, and on play when the main is gameboard. : 
 minecraft.selectTool = function(){
     if ($(this).hasClass("tool")) {
-        minecraft.selectedTool=$(this).attr('id');    
+        minecraft.selectedTool=$(this).attr('id');
     }
     if($(this).attr("id")==('matter')){
         minecraft.selectedTool = 'matter';
     }
 }
-
