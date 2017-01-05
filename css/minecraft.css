@@ -125,7 +125,7 @@ body{
     margin-bottom: 30px;
 }
  #matter{
-    display: none;   
+    display: none;
 }
 
 #stone,#leaves,#wood,#bush,#dirt,#floor{
@@ -137,22 +137,20 @@ body{
 }
 
 #stone{
-background-image: url("../images/stone.png");
+    background-image: url("../images/stone.png");
 }
 #leaves{
-background-image: url("../images/sapin.jpg");
+    background-image: url("../images/sapin.jpg");
 }
-
 #wood{
-background-image: url("../images/wood.png");
+    background-image: url("../images/wood.png");
 }
 #bush{
-background-image: url("../images/bush.png");
+    background-image: url("../images/bush.png");
 }
 #dirt{
     background-image: url("../images/dirt.png");
-    
 }
 #floor{
-background-image: url("../images/herb.jpg");
+    background-image: url("../images/herb.jpg");
 }
