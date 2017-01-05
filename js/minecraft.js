@@ -170,7 +170,15 @@ minecraft.updateMatter = function(pickedMatter){
     $('#' + pickedMatter +" p").text(minecraft.inventory[pickedMatter]);
 }
 
-
+minecraft.matterIsPicked = function(matter, line, col){
+    if (minecraft.inventory[matter] > 0){
+        if(minecraft.matrix[line][col] == ""){
+            minecraft.matrix[line][col] = matter;
+            minecraft.inventory[matter]--;
+            $('#'+ matter + " p").html(minecraft.inventory[matter]);
+        }
+    }
+}
 
 minecraft.caseClicked = function(){ //me donne la valeur de ma case (ma classe)
     var line =$(this).data("line");
@@ -187,17 +195,23 @@ minecraft.caseClicked = function(){ //me donne la valeur de ma case (ma classe)
             }
         
         }
-
         else if(minecraft.selectedTool=="secateur"){
             if(minecraft.matrix[line][col] =="bush" || minecraft.matrix[line][col] =="leaves"){
                 minecraft.updateMatter(minecraft.matrix[line][col]);
                 minecraft.matrix[line][col] = "";
             }
+            else {
+                minecraft.wrongChoice(minecraft.selectedTool);
+            }
+
         }
         else if(minecraft.selectedTool=="pickaxe"){
             if(minecraft.matrix[line][col] =="stone"){
                 minecraft.updateMatter(minecraft.matrix[line][col]);
                 minecraft.matrix[line][col] = "";
+            }
+            else {
+                minecraft.wrongChoice(minecraft.selectedTool);
             }
         }
         else if(minecraft.selectedTool=="shovel"){
@@ -205,30 +219,15 @@ minecraft.caseClicked = function(){ //me donne la valeur de ma case (ma classe)
                 minecraft.updateMatter(minecraft.matrix[line][col]);
                 minecraft.matrix[line][col] = "";
             }
+            else {
+                minecraft.wrongChoice(minecraft.selectedTool);
+            }
         }
     }
-
-/*
-    stone
-    leaves
-    wood
-    bush
-    dirt
-    floor
-*/
-
-
-
-
-
-    else if (minecraft.selectedTool=="stone" &&  minecraft.inventory["stone"] > 0){
-        if(minecraft.matrix[line][col] == ""){
-            minecraft.matrix[line][col] = minecraft.selectedTool;
-            minecraft.inventory[minecraft.selectedTool]--;
-        }
+    else {
+        console.log('ca va?')
+        minecraft.matterIsPicked(minecraft.selectedTool, line, col);
     }
-
-
     minecraft.updateBoard(); // We are calling updateBoard who reads the matrix and update the board.
 }
 
@@ -244,10 +243,10 @@ minecraft.selectTool = function(){
 
 minecraft.wrongChoice=function(wrongTool){
     console.log("tu le fais?");
-$("#" + wrongTool).css("background-color","rgb(199, 0, 57)");
-setTimeout(function(){
-   $("#" + wrongTool).css("background-color","rgb(201, 206, 208)"); 
-},500);
+    $("#" + wrongTool).css("background-color","rgb(199, 0, 57)");
+    setTimeout(function(){
+        $("#" + wrongTool).css("background-color","rgb(201, 206, 208)"); 
+    },300);
 }
 
 
