@@ -79,26 +79,28 @@ body{
 /********* Barre d'outils *********/
 #tools{
     display: inline-block;
-    background-color:rgb(74, 38, 28);
     height: 100%;
     text-align: center;
 }
 
 .tool, #matter{
-    height: 20%;
-    width: 70%;
-    background-color:rgb(19, 163, 28);
+
+
+    height: 70px;
+    width: 70px;
     border:1px solid black;
     margin: auto;
-    margin-top: 15px;
+    margin-top: 8px;
     box-shadow: 5px 5px 5px #000;
     border-radius: 10px;
+    /*margin-left: 12px;*/
 }
 #axe{
     background-image: url("../images/axe.png");
     background-size: 80% 80%;
     background-repeat: no-repeat;
     background-position: center;
+    margin-top: 26px;
 }
 #pickaxe{
     background-image: url("../images/pickaxe.png");
@@ -111,8 +113,35 @@ body{
     background-size: 80% 80%;
     background-repeat: no-repeat;
     background-position: center;
+    margin-bottom: 30px;
 }
  #matter{
     display: none;   
 }
 
+#stone,#leaves,#wood,#bush,#dirt,#floor{
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    display:inline-block;
+}
+#stone{
+background-image: url("../images/stone.png");
+}
+#leaves{
+background-image: url("../images/leaves.png");
+}
+
+#wood{
+background-image: url("../images/wood.png");
+}
+#bush{
+background-image: url("../images/bush.png");
+}
+#dirt{
+    background-image: url("../images/dirt.png");
+    
+}
+#floor{
+background-image: url("../images/floor.png");
+}
