@@ -97,12 +97,19 @@ body{
     background-color: rgb(201, 206, 208);
     /*margin-left: 12px;*/
 }
-#axe{
+#secateur{
     background-image: url("../images/secateur.png");
     background-size: 80% 80%;
     background-repeat: no-repeat;
     background-position: center;
     margin-top: 26px;
+}
+#axe{
+    background-image: url("../images/axe.png");
+    background-size: 80% 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+
 }
 #pickaxe{
     background-image: url("../images/pickaxe.png");
