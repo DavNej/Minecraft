@@ -103,12 +103,16 @@ body{
     transform: translateY(-100%);
 }
 /********* Tools *********/
+#secateur,#pickaxe,#shovel,#axe{
+    display:inline-block;
+    margin-right: 11px;
+}
 #secateur{
     background-image: url("../images/secateur.png");
     background-size: 80% 80%;
     background-repeat: no-repeat;
     background-position: center;
-    margin-top: 26px;
+    margin-top: 18px;
 }
 #axe{
     background-image: url("../images/axe.png");
@@ -127,7 +131,6 @@ body{
     background-size: 80% 80%;
     background-repeat: no-repeat;
     background-position: center;
-    margin-bottom: 30px;
 }
 /********* Matters *********/
 #stone,#leaves,#wood,#bush,#dirt,#floor{

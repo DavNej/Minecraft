@@ -184,7 +184,13 @@ minecraft.caseClicked = function(){ //me donne la valeur de ma case (ma classe)
 
     if(minecraft.checkIfPickable(line, col)){
         if(minecraft.selectedTool=="axe"){
-            if(minecraft.matrix[line][col] =="wood" || minecraft.matrix[line][col] =="leaves" || minecraft.matrix[line][col] =="bush"){
+            if(minecraft.matrix[line][col] =="wood" /*|| minecraft.matrix[line][col] =="leaves" || minecraft.matrix[line][col] =="bush"*/){
+                minecraft.updateMatter(minecraft.matrix[line][col]);
+                minecraft.matrix[line][col] = "";
+            }
+        }
+        else if(minecraft.selectedTool=="secateur"){
+            if(minecraft.matrix[line][col] =="bush" || minecraft.matrix[line][col] =="leaves"){
                 minecraft.updateMatter(minecraft.matrix[line][col]);
                 minecraft.matrix[line][col] = "";
             }
