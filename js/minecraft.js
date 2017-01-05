@@ -189,7 +189,9 @@ minecraft.caseClicked = function(){ //me donne la valeur de ma case (ma classe)
         }
     }
     else if (minecraft.selectedTool=="matter"){
-        minecraft.matrix[line][col] = $("#matter").attr('class');
+        if(minecraft.matrix[line][col] == ""){
+            minecraft.matrix[line][col] = $("#matter").attr('class');
+        }
     }
     minecraft.updateBoard(); // We are calling updateBoard who reads the matrix and update the board.
 }
