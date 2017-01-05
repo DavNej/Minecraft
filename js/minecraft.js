@@ -29,12 +29,9 @@ minecraft.initWorld = function(){
     minecraft.createBush(15, 9);
     minecraft.updateBoard();
     
-    $('.tool').click(minecraft.selectTool);
-    $('.tool').mousedown(function(){$(this).css("box-shadow", "none");});
-    $('.tool').mouseup(function(){$(this).css("box-shadow", "5px 5px 5px #000");});
-    $('#matter').click(minecraft.selectTool);
-    $('#matter').mousedown(function(){$(this).css("box-shadow", "none");});
-    $('#matter').mouseup(function(){$(this).css("box-shadow", "5px 5px 5px #000");});
+    $('.tool, #matter').click(minecraft.selectTool);
+    $('.tool, #matter').mousedown(function(){$(this).css("box-shadow", "5px 5px 5px #000 inset");});
+    $('.tool, #matter').mouseup(function(){$(this).css("box-shadow", "5px 5px 5px #000");});
 }
 
 //Création des lignes et des colonnes.
@@ -158,11 +155,28 @@ minecraft.checkIfPickable = function(line, col) {
     }
 }
 
+
+minecraft.inventory = {
+    stone: 0,
+    leaves: 0,
+    wood: 0,
+    bush: 0,
+    dirt: 0,
+    floor: 0
+}
+
+minecraft.updateInventory = function(){
+    
+}
+
 minecraft.updateMatter = function(pickedMatter){
+    minecraft.inventory[pickedMatter]++;
     $('#matter').removeClass();
     $('#matter').css({"display" : "block"});
     $('#matter').addClass(pickedMatter);
 }
+
+
 
 minecraft.caseClicked = function(){ //me donne la valeur de ma case (ma classe)
     var line =$(this).data("line");
