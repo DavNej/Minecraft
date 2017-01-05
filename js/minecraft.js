@@ -188,7 +188,12 @@ minecraft.caseClicked = function(){ //me donne la valeur de ma case (ma classe)
                 minecraft.updateMatter(minecraft.matrix[line][col]);
                 minecraft.matrix[line][col] = "";
             }
+            else {
+                minecraft.wrongChoice(minecraft.selectedTool);
+            }
+        
         }
+
         else if(minecraft.selectedTool=="secateur"){
             if(minecraft.matrix[line][col] =="bush" || minecraft.matrix[line][col] =="leaves"){
                 minecraft.updateMatter(minecraft.matrix[line][col]);
@@ -225,3 +230,17 @@ minecraft.selectTool = function(){
         minecraft.selectedTool = 'matter';
     }
 }
+
+minecraft.wrongChoice=function(wrongTool){
+    console.log("tu le fais?");
+$("#" + wrongTool).css("background-color","rgb(199, 0, 57)");
+setTimeout(function(){
+   $("#" + wrongTool).css("background-color","rgb(201, 206, 208)"); 
+},500);
+}
+
+
+
+
+
+
