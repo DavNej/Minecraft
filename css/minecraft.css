@@ -37,13 +37,13 @@ body{
     background-image: url('../images/wood.png');
 }
 .leaves{
-    background-image: url('../images/leaves.png');
+    background-image: url('../images/sapin.jpg');
 }
 .stone{
     background-image: url('../images/stone.png');
 }
 .floor{
-    background-image: url('../images/floor.png');
+    background-image: url('../images/herb.jpg');
 }
 .dirt{
     background-image: url('../images/dirt.png');
@@ -77,10 +77,13 @@ body{
 
 
 /********* Barre d'outils *********/
+
 #tools{
     display: inline-block;
     height: 100%;
     text-align: center;
+    background-image: url("../images/greytwo.jpg");
+    background-size: cover;
 }
 
 .tool, #matter{
@@ -91,10 +94,11 @@ body{
     margin-top: 8px;
     box-shadow: 5px 5px 5px #000;
     border-radius: 10px;
+    background-color: rgb(201, 206, 208);
     /*margin-left: 12px;*/
 }
 #axe{
-    background-image: url("../images/axe.png");
+    background-image: url("../images/secateur.png");
     background-size: 80% 80%;
     background-repeat: no-repeat;
     background-position: center;
@@ -122,12 +126,14 @@ body{
     background-repeat: no-repeat;
     background-position: center;
     display:inline-block;
+    margin-right: 11px;
 }
+
 #stone{
     background-image: url("../images/stone.png");
 }
 #leaves{
-    background-image: url("../images/leaves.png");
+    background-image: url("../images/sapin.jpg");
 }
 #wood{
     background-image: url("../images/wood.png");
@@ -139,5 +145,5 @@ body{
     background-image: url("../images/dirt.png");
 }
 #floor{
-    background-image: url("../images/floor.png");
+    background-image: url("../images/herb.jpg");
 }
