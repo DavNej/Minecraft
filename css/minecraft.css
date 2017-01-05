@@ -104,10 +104,12 @@ body{
     /*border:1px solid black;*/
     margin: auto;
     margin-top: 8px;
-    box-shadow: 5px 5px 5px #000;
+    box-shadow: 5px 5px 5px black;
     border-radius: 10px;
     overflow: hidden;
+
     background-color: rgb(201, 206, 208);
+
 }
 .matter p{
     color: white;
@@ -121,6 +123,7 @@ body{
 #secateur, #pickaxe, #shovel, #axe{
     display:inline-block;
     margin-right: 11px;
+    
 }
 #secateur{
     background-image: url("../images/secateur.png");

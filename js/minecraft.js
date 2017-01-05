@@ -237,9 +237,12 @@ minecraft.caseClicked = function(){ //me donne la valeur de ma case (ma classe)
             }
         }
     }
-    else {
+    else if ($('#' + minecraft.selectedTool).hasClass('matter')){
         console.log('ca va?')
         minecraft.matterIsPicked(minecraft.selectedTool, line, col);
+    }
+    else{
+         minecraft.wrongChoice(minecraft.selectedTool);
     }
     minecraft.updateBoard(); // We are calling updateBoard who reads the matrix and update the board.
 }
@@ -258,12 +261,6 @@ minecraft.wrongChoice=function(wrongTool){
     console.log("tu le fais?");
     $("#" + wrongTool).css("background-color","rgb(199, 0, 57)");
     setTimeout(function(){
-        $("#" + wrongTool).css("background-color","rgb(201, 206, 208)"); 
+        $("#" + wrongTool).css("background-color","rgb(198, 200, 201)"); 
     },300);
 }
-
-
-
-
-
-
