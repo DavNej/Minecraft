@@ -5,28 +5,42 @@
 	<title>Minecraft</title>
 	<meta charset="UTF-8">
 
-	 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="css/minecraft.css">
+<!-- 	 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+ -->	<link rel="stylesheet" href="css/minecraft.css">
 </head>
 
 <body>
 
-<div class="container">
 		<div class="col-md-10 col-xs-10 col-lg-10" id="main">
 			<img id="logo" src="./images/logo.png" alt="Valentine and David's MineCraft Game">
+			<div id="button"></div>
+			<div class=text style="display: none">
+				<h2 class=rule> Rules of Minecraft</h2>
+					<h4 class=rules>Minecraft enable you to build constructions out of textured cubes.</h4>
+
+					<h2 class=rule>You will have 4 types of tools:</h2>
+
+					<h4 class=rules>Axe, for cutting trees</br>
+					Secator, for cutting bush and leaves</br>
+					Pickaxe, for destroying stone,</br>
+					Shovel for digging dirt and floor.</br>
+
+					Clicking on a tool followed by clicking on a tile in the world will remove the tile ans add it to the inventory</br>
+					You can click on the tile inventory and place it back in the world </h4>
+			</div>
+
 			<div id="world"></div>
-		</div>
 
 		<div class = "col-md-2 col-xs-2 col-lg-2" id="tool-bar">
 			<div id = "tools">
-				<h1>Tools</h1>
+				<h2>Tools</h2>
 				<div class = "tool" id = "secateur"></div>
 				<div class = "tool" id = "axe"></div>
 				<div class = "tool" id = "pickaxe"></div>
 				<div class = "tool" id = "shovel"></div>
 			</div>
 			<div id="inventory">
-				<h1>Inventory</h1>
+				<h2>Inventory</h2>
 				<div class = "matter" id ="stone"><p>0</p></div>
 				<div class = "matter" id ="leaves"><p>0</p></div>
 				<div class = "matter" id = "wood"><p>0</p></div>
@@ -36,7 +50,6 @@
 			</div>
 		</div>
 	</div>
-</div>
 
 <script src="js/lib/jQuery.min.js"></script>
 <script src="js/minecraft.js"></script>

@@ -1,17 +1,19 @@
 body{
     margin: 0;
 }
-.container{
-    height: 100vh;
-    width: 100%;
-    padding: 0;
+.rules{
+    color:rgb(198, 200, 201);
+}
+.rule{
+    color: rgb(46, 161, 47);
 }
 #main{
     display: inline-block;
-    height: 100%;
-    text-align: center;
+    height: 100vh;
+/*    text-align: center;*/
 	background-image: url("../images/background.png");
     background-size: cover;
+    width: 100%;
 }
 
 /********* Game board *********/
@@ -49,9 +51,10 @@ body{
 
 /********* Landing page *********/
 #logo{
-	width: 80%;
+	width: 63%;
     display: inline-block;
-	margin-top: 125px;
+    margin-top: 141px;
+    margin-left: 179px;
 }
 #world{
     display: none; /* pour pas qu'on le voit au début */
@@ -62,22 +65,38 @@ body{
     background-size: auto 100%;
 }
 
-.myButton{
+.myButton, .tuto{
 	font-family: arial;
 	background-color:rgb(26, 192, 36);
 	border: 5px solid black;
-    display:block;
+    display:inline-block;
     margin:auto;
+    position: absolute;
+    font-size: 18px;
 }
-
+#button{
+    text-align: center;
+    position: relative;
+}
+.tuto{
+    right: 400px;
+}
+.myButton{
+    left: 400px;
+}
 /********* Barre d'outils *********/
 #tool-bar{
+    /*display: none;*/
     display: inline-block;
     height: 100%;
-    /*width: 300px;*/
+    width: 190px;
+    padding: 15px;
     text-align: center;
     background-image: url("../images/greytwo.jpg");
     background-size: cover;
+    position: fixed;
+    right:0;
+    top:0;
 }
 .tool, .matter{
     height: 70px;
@@ -88,7 +107,7 @@ body{
     box-shadow: 5px 5px 5px #000;
     border-radius: 10px;
     overflow: hidden;
-    background-color: rgb(201, 206, 208); /*rgb(199, 0, 57);*/
+    background-color: rgb(201, 206, 208);
 }
 .matter p{
     color: white;

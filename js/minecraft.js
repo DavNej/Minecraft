@@ -4,14 +4,26 @@ minecraft.gamePlay = false;
 minecraft.createButton = function(){
     var btn=$("<button/>");
     btn.addClass("myButton");
-    btn.text("START");
-    $("#main").append(btn);
+    btn.text("Start");
+    $("#button").append(btn);
     btn.click(minecraft.newGame);
 };
+minecraft.tutoButton = function(){
+    var btn=$("<button/>");
+    btn.addClass("tuto");
+    btn.text("Tutorial");
+    $("#button").append(btn);
+    btn.click(function(){
+        $('.text').show();
+    });
+};
+
 
 minecraft.newGame = function(){ // set the game board.
 	$('#logo').hide();
     $('.myButton').hide();
+    $('.tuto').hide();
+    $('.text').hide();
 	$('#main').css({'background-image':'none', 'background-color':'#3b3d3f', 'line-height': '0'});
     $('#world').css({"display" : "block"});
     minecraft.gamePlay = true;
@@ -19,6 +31,7 @@ minecraft.newGame = function(){ // set the game board.
 }
 
 minecraft.createButton();
+minecraft.tutoButton();
 
 // Fonction qui va définir l'univers du jeu
 minecraft.initWorld = function(){
