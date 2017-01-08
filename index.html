@@ -5,44 +5,47 @@
 	<title>Minecraft</title>
 	<meta charset="UTF-8">
 
+	<link rel="icon" href="images/icon.png">
 
-<!-- 	 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
- -->	<link rel="stylesheet" href="css/minecraft.css">
-
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/minecraft.css">
 </head>
 
 <body>
 
-		<div class="col-md-10 col-xs-10 col-lg-10" id="main">
+<div class="container">
+		<div class="col-md-12 col-xs-12 col-lg-12" id="main">
 			<img id="logo" src="./images/logo.png" alt="Valentine and David's MineCraft Game">
-			<div id="button"></div>
+
+			<!--<div id="button"></div>
 			<div class=text style="display: none">
 				<h2 class=rule> Rules of Minecraft</h2>
-					<h4 class=rules>Minecraft enable you to build constructions out of textured cubes.</h4>
+					<h4 class=rules>Minecraft allows you to build constructions out of textured cubes.</h4>
+					<h2 class=rule>4 types of tools are available:</h2>
 
-					<h2 class=rule>You will have 4 types of tools:</h2>
+					<p class=rules>Axe is for cutting trees</br>
+					Secator is for cutting bushes and leaves</br>
+					Pickaxe is for Picking stone</br>
+					Shovel is for digging herbs and dirt.</br>
+					Select a tool then click on the game board will remove the tile and add it to the inventory</br>
+					You can then click on the matter of your choice in the inventory and place it back in the game board</p>
+			</div>-->
 
-					<h4 class=rules>Axe, for cutting trees</br>
-					Secator, for cutting bush and leaves</br>
-					Pickaxe, for destroying stone,</br>
-					Shovel for digging dirt and floor.</br>
 
-					Clicking on a tool followed by clicking on a tile in the world will remove the tile ans add it to the inventory</br>
-					You can click on the tile inventory and place it back in the world </h4>
-			</div>
 
 			<div id="world"></div>
+		</div>
 
 		<div class = "col-md-2 col-xs-2 col-lg-2" id="tool-bar">
 			<div id = "tools">
-				<h2>Tools</h2>
+				<h1>Tools</h1>
 				<div class = "tool" id = "secateur"></div>
 				<div class = "tool" id = "axe"></div>
 				<div class = "tool" id = "pickaxe"></div>
 				<div class = "tool" id = "shovel"></div>
 			</div>
 			<div id="inventory">
-				<h2>Inventory</h2>
+				<h1>Inventory</h1>
 				<div class = "matter" id ="stone"><p>0</p></div>
 				<div class = "matter" id ="leaves"><p>0</p></div>
 				<div class = "matter" id = "wood"><p>0</p></div>
@@ -52,6 +55,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 
 <script src="js/lib/jQuery.min.js"></script>
 <script src="js/minecraft.js"></script>

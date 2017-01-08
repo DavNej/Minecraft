@@ -4,34 +4,28 @@ minecraft.gamePlay = false;
 minecraft.createButton = function(){
     var btn=$("<button/>");
     btn.addClass("myButton");
-    btn.text("Start");
-    $("#button").append(btn);
+    btn.text("START");
+    $("#main").append(btn);
     btn.click(minecraft.newGame);
 };
-minecraft.tutoButton = function(){
-    var btn=$("<button/>");
-    btn.addClass("tuto");
-    btn.text("Tutorial");
-    $("#button").append(btn);
-    btn.click(function(){
-        $('.text').show();
-    });
-};
-
 
 minecraft.newGame = function(){ // set the game board.
 	$('#logo').hide();
     $('.myButton').hide();
-    $('.tuto').hide();
-    $('.text').hide();
-	$('#main').css({'background-image':'none', 'background-color':'#3b3d3f', 'line-height': '0'});
+	$('#main').css({'background-image':'none', 'background-color':'#3b3d3f', 'line-height': '0'})
+        .removeClass("col-md-12")
+        .removeClass("col-xs-12")
+        .removeClass("col-lg-12")
+        .addClass("col-md-10")
+        .addClass("col-xs-10")
+        .addClass("col-lg-10")
+        .css("positon", "none");
     $('#world').css({"display" : "block"});
     minecraft.gamePlay = true;
     minecraft.initWorld();
-}
+};
 
 minecraft.createButton();
-minecraft.tutoButton();
 
 // Fonction qui va définir l'univers du jeu
 minecraft.initWorld = function(){
@@ -45,7 +39,7 @@ minecraft.initWorld = function(){
     $('.tool, .matter').click(minecraft.selectTool);
     $('.tool, .matter').mousedown(function(){$(this).css("box-shadow", "5px 5px 5px .000 inset");});
     $('.tool, .matter').mouseup(function(){$(this).css("box-shadow", "5px 5px 5px #000");});
-}
+};
 
 //Création des lignes et des colonnes.
 minecraft.initMatrix = function(){
@@ -149,26 +143,6 @@ minecraft.updateBoard = function(){
     }
 }
 
-minecraft.checkIfPickable = function(line, col) {
-    if(minecraft.matrix[line][col] == "leaves"){
-        if(minecraft.matrix[line-1][col] == "" || minecraft.matrix[line+1][col] == "" || minecraft.matrix[line][col-1] == "" || minecraft.matrix[line][col+1] == ""){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    if(minecraft.matrix[line][col] == "wood" || minecraft.matrix[line][col] == "dirt" || minecraft.matrix[line][col] == "floor" || minecraft.matrix[line][col] == "bush" || minecraft.matrix[line][col] == "stone"){
-        if(minecraft.matrix[line-1][col] == ""){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-}
-
-
 minecraft.inventory = {
     stone: 0,
     leaves: 0,
@@ -183,72 +157,58 @@ minecraft.updateMatter = function(pickedMatter){
     $('#' + pickedMatter +" p").text(minecraft.inventory[pickedMatter]);
 }
 
-minecraft.matterIsPicked = function(matter, line, col){
+minecraft.layMatter = function(matter, line, col){
     if (minecraft.inventory[matter] > 0){
         if(minecraft.matrix[line][col] == ""){
             minecraft.matrix[line][col] = matter;
             minecraft.inventory[matter]--;
             $('#'+ matter + " p").html(minecraft.inventory[matter]);
         }
+        else{
+            console.log('ici?')
+            minecraft.wrongChoice(minecraft.selectedTool);
+        }
     }
+}
+
+minecraft.allowedMatter = {
+    axe:{wood:true},
+    secateur:{leaves:true, bush:true},
+    pickaxe:{stone:true},
+    shovel:{dirt:true, floor:true},
+
+    wood:{},
+    leaves:{},
+    bush:{},
+    stone:{},
+    dirt:{},
+    floor:{}
 }
 
 minecraft.caseClicked = function(){ //me donne la valeur de ma case (ma classe)
     var line =$(this).data("line");
     var col =$(this).data("col");
 
-    if(minecraft.checkIfPickable(line, col)){
-        if(minecraft.selectedTool=="axe"){
-            if(minecraft.matrix[line][col] =="wood"){
-                minecraft.updateMatter(minecraft.matrix[line][col]);
-                minecraft.matrix[line][col] = "";
-            }
-            else {
-                minecraft.wrongChoice(minecraft.selectedTool);
-            }
-        
+    if($('#' + minecraft.selectedTool).hasClass('tool')){
+        if (minecraft.matrix[line][col] in minecraft.allowedMatter[minecraft.selectedTool]){
+            minecraft.updateMatter(minecraft.matrix[line][col]);
+            minecraft.matrix[line][col] = "";
         }
-        else if(minecraft.selectedTool=="secateur"){
-            if(minecraft.matrix[line][col] =="bush" || minecraft.matrix[line][col] =="leaves"){
-                minecraft.updateMatter(minecraft.matrix[line][col]);
-                minecraft.matrix[line][col] = "";
-            }
-            else {
-                minecraft.wrongChoice(minecraft.selectedTool);
-            }
-
-        }
-        else if(minecraft.selectedTool=="pickaxe"){
-            if(minecraft.matrix[line][col] =="stone"){
-                minecraft.updateMatter(minecraft.matrix[line][col]);
-                minecraft.matrix[line][col] = "";
-            }
-            else {
-                minecraft.wrongChoice(minecraft.selectedTool);
-            }
-        }
-        else if(minecraft.selectedTool=="shovel"){
-            if(minecraft.matrix[line][col] =="dirt" || minecraft.matrix[line][col] =="floor" ){
-                minecraft.updateMatter(minecraft.matrix[line][col]);
-                minecraft.matrix[line][col] = "";
-            }
-            else {
-                minecraft.wrongChoice(minecraft.selectedTool);
-            }
+        else {
+            minecraft.wrongChoice(minecraft.selectedTool);
         }
     }
     else if ($('#' + minecraft.selectedTool).hasClass('matter')){
-        console.log('ca va?')
-        minecraft.matterIsPicked(minecraft.selectedTool, line, col);
-    }
-    else{
-         minecraft.wrongChoice(minecraft.selectedTool);
+        minecraft.layMatter(minecraft.selectedTool, line, col);
     }
     minecraft.updateBoard(); // We are calling updateBoard who reads the matrix and update the board.
 }
 
 //Fonction of the menu that have to be on pause when the main is landing, and on play when the main is gameboard. : 
 minecraft.selectTool = function(){
+    $(".tool, .matter").css("border", "none");
+    
+    $(this).css("border", "3px solid #42f45c");
     if ($(this).hasClass("tool")) {
         minecraft.selectedTool=$(this).attr('id');
     }
@@ -258,9 +218,8 @@ minecraft.selectTool = function(){
 }
 
 minecraft.wrongChoice=function(wrongTool){
-    console.log("tu le fais?");
-    $("#" + wrongTool).css("background-color","rgb(199, 0, 57)");
+    $("#" + wrongTool).css("border", "3px solid #ef0e0e");
     setTimeout(function(){
-        $("#" + wrongTool).css("background-color","rgb(198, 200, 201)"); 
-    },300);
+        $("#" + wrongTool).css("border", "3px solid #42f45c"); 
+    },400);
 }
